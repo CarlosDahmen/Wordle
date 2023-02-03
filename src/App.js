@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import './styles/App.scss';
+import { hot } from 'react-hot-loader';
+import Header from './components/Header';
+import Game from './components/Game';
+import Won from './components/Won'
+import Lost from './components/Lost'
+import { GameDetailsProvider } from './context/GameDetails';
+import { useGameDetails } from './context/GameDetails';
 
-function App() {
+const App = () => {
+  // const [gamePhase, setGamePhase] = useState['playing']
+  // let Component = Game
+
+  // switch(gamePhase){
+  //   case 'playing':
+  //   Component = Game
+  //   break;
+
+  //   case 'won':
+  //   Component = Won;
+  //   break;
+
+  //   case 'lost':
+  //   Component = Lost
+  //   break;
+  //   default:
+  // }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GameDetailsProvider>
+        <Header />
+        <Game />
+    </GameDetailsProvider>
   );
 }
 
-export default App;
+export default hot(module)(App);
