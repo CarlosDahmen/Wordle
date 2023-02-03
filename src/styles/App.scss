@@ -1,0 +1,83 @@
+.App {
+  text-align: center;
+  height: 100vh;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  height: inherit;
+  width: inherit;
+}
+
+.board {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.tile {
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  width: 58px;
+  height: 58px;
+  border: 2px;
+}
+
+.present {
+  background-color: rgba(0,255,0,0.5);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.exists  {
+  background-color: rgba(0,0,255,0.5);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.miss {
+  background-color: rgba(255,0,0,0.5);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile {
+  border-style: solid;
+  margin: 5px;
+  display: flex;
+}
+
+input {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background: transparent;
+}
