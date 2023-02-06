@@ -1,9 +1,7 @@
 import React from 'react'
 import Tile from './Tile'
 
-const Row = ({row}) => {
-  console.log('ROW IN COMPONENT ROW', row)
-
+const Row = ({word, guess, row}) => {
   return (
     <div className="row">
       <Tile row={row} idx={0}/>

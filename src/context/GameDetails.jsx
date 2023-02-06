@@ -17,9 +17,10 @@ export const useGameDetails = () => {
 
 export const GameDetailsProvider = (props) => {
   const [turn, setTurn] = useState(0)
+  const [gameState, setGameState] = useState('playing')
   const [word, setWord] = useState('')
   const [targetWord, setTargetWord] = useState('')
-  const [pastGuesses, setPastGuesses] = useState([])
+  const [pastGuesses, setPastGuesses] = useState([...Array(6)])
 
   const handleKeyDown = e => {
     if(e.key === 'Backspace'){
@@ -30,6 +31,7 @@ export const GameDetailsProvider = (props) => {
     if (e.key === 'Enter'){
       if(turn > 5){
         console.log('you lost')
+        setGameState('lost')
         return
       }
 
@@ -44,28 +46,46 @@ export const GameDetailsProvider = (props) => {
       }
 
       if(validWord(word)){
-        console.log(word)
-        const newGuess = [checkWord(word, targetWord)]
-        setTurn(turn + 1)
-        setPastGuesses(...pastGuesses, newGuess)
+        addNewGuess(word)
         } else console.log('NOT A VALID WORD')
     }
 
     if(validInput(e.key)){
-      setWord(word + e.key.toUpperCase())
+      if(word.length < 5){
+        setWord(word + e.key.toUpperCase())
+      }
     }
   }
 
-  const setTileColor = (row, idx) => {
-    console.log(row, idx, pastGuesses)
-    if(pastGuesses.length !== 0){
-      if(pastGuesses[row][idx] === 2){
+  const addNewGuess = (word) => {
+    if(word === targetWord){
+      setGameState('won')
+    }
+    setPastGuesses((pastGuesses) => {
+      let updatedGuesses = [...pastGuesses]
+      updatedGuesses[turn] = word
+      return updatedGuesses
+    })
+    // setPastGuesses(...pastGuesses, word)
+    setTurn(turn => {
+      return turn + 1
+    })
+    setWord('')
+  }
+
+  const setTileColor = (pastGuess, idx) => {
+    if(pastGuesses !== undefined){
+      if(checkWord(pastGuess, targetWord)[idx] === 2){
+        console.log('right')
         return 'right'
-      } else if(pastGuesses[row][idx] === 1){
-      return 'exists'
-      } else if(pastGuesses[row][idx] === 0){
+      } else if(checkWord(pastGuess, targetWord)[idx] === 1){
+        console.log('exists')
+        return 'exists'
+      } else if(checkWord(pastGuess, targetWord)[idx] === 0){
+        console.log('wrong')
         return 'wrong'
       }
+      return true
     }
   }
 
@@ -75,22 +95,20 @@ export const GameDetailsProvider = (props) => {
     // setActiveTile(1)
   }
 
-  const updateTile = () => {
-      // setActiveTile(activeTile + 1)
-      // setActiveRef(parseInt(activeRow.toString().concat(activeTile.toString())))
-    }
-
   const value = {
+    turn,
     word,
+    targetWord,
+    gameState,
+    pastGuesses,
     resetGame,
     setWord,
-    updateTile,
     handleKeyDown,
-    setTileColor
+    setTileColor,
   }
 
   useEffect(() => {
-    setTargetWord(newWord)
+    setTargetWord(newWord())
   }, [])
 
   return <GameDetails.Provider value={value} {...props} />

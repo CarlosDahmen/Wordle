@@ -4,23 +4,23 @@ import { useGameDetails } from '../context/GameDetails'
 
 const Game = () => {
 
-  const { handleKeyDown } = useGameDetails();
+  const { handleKeyDown, pastGuesses, turn, gameState, targetWord } = useGameDetails();
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
-
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [handleKeyDown])
+
+  useEffect(() => {
+    console.log(pastGuesses, turn, gameState)
+  }, [pastGuesses, turn, gameState, targetWord])
 
  return(
   <div className="game-container">
     <div className="board">
-      <Row row={0}/>
-      {/* <Row row={2} /> */}
-      {/* <Row row={3}/>
-      <Row row={4}/>
-      <Row row={5}/>
-      <Row row={6}/> */}
+      {pastGuesses.map((guess, i) => {
+        return <Row guess={guess} row={i} key={i}/>
+        })}
     </div>
   </div>
  )

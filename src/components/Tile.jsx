@@ -4,14 +4,28 @@ var cx = require('classnames');
 
 
 const Tile = ({row, idx}) => {
-  console.log('ROW IN COMPONENT TILE', row)
 
-  const {word, setTileColor, pastGuesses} = useGameDetails()
+  const { setTileColor, pastGuesses, turn, word} = useGameDetails()
+
+  if(turn === row){
+    return (
+      <div className={cx('tile')}>
+        {word[idx]}
+      </div>
+    )
+  }
+
+  if(pastGuesses[row]){
+    return(
+      <div className={cx('tile', setTileColor(pastGuesses[row], idx))}>
+      {pastGuesses[row][idx]}
+    </div>
+    )
+  }
 
   return (
-  <div className={cx('tile', setTileColor(pastGuesses, row, idx))}>
-    {word[idx - 1]}
-  </div>
+    <div className={cx('tile')}>
+    </div>
   )
 }
 

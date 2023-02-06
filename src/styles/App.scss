@@ -95,12 +95,32 @@ input {
 
 .right {
   background-color: green;
+  animation: flip 0.5s ease forwards;
 }
 
 .exists {
   background-color: yellow;
+  animation: flip 0.5s ease forwards;
 }
 
 .wrong {
   background-color: gray;
+  animation: flip 0.5s ease forwards;
+}
+
+//animations
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0)
+  }
+  45% {
+    transform: rotateX(90deg);
+  }
+  55% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0)
+  }
 }

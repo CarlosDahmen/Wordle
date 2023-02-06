@@ -1,19 +1,15 @@
 import { wordlist } from "./wordlist"
 
-export const checkWord = (word, realWord) => {
-
-  //check input against word
-  // if(input === word){
-  //   return //change gameState to Won
-  // }
-
+export const checkWord = (word, targetWord) => {
+  console.log('word', word, 'targetword', targetWord)
   const checkedWord = []
+
   for(let i = 0; i < word.length; i++){
-      if(!word.includes(realWord[i])){
+      if(!word.includes(targetWord[i])){
         checkedWord.push(0)
-      } else if(word.includes(realWord[i]) && realWord[i] !== word[i]){
+      } else if(word.includes(targetWord[i]) && targetWord[i] !== word[i]){
         checkedWord.push(1)
-      } else if (realWord[i] === word[i]){
+      } else if (targetWord[i] === word[i]){
         checkedWord.push(2)
       }
     }
@@ -34,5 +30,7 @@ export const validWord = (input) => {
 }
 
 export const newWord = () => {
-  return wordlist[Math.floor(Math.random() * wordlist.length)]
+  const asdf = wordlist[Math.floor(Math.random() * wordlist.length)]
+  console.log(asdf)
+  return asdf
 }
