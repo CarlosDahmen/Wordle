@@ -22,8 +22,11 @@ export const checkWord = (word, realWord) => {
 
 
 export const validInput = (input) => {
-  const validChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  return validChars.includes(input)
+  const isLetter = /^[A-Za-z]$/.test(input)
+  return isLetter
+
+  // const validChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  // return validChars.includes(input)
 }
 
 export const validWord = (input) => {

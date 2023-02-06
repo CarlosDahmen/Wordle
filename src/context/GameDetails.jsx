@@ -16,47 +16,77 @@ export const useGameDetails = () => {
 }
 
 export const GameDetailsProvider = (props) => {
-  const [targetWord, setTargetWord] = useState('')
+  const [turn, setTurn] = useState(0)
   const [word, setWord] = useState('')
-  const [activeRow, setActiveRow] = useState(1)
-  const [activeTile, setActiveTile] = useState(1)
+  const [targetWord, setTargetWord] = useState('')
+  const [pastGuesses, setPastGuesses] = useState([])
 
   const handleKeyDown = e => {
-    // console.log('ACTIVE TILE', activeTile)
-    // console.log('ACTIVE ROW', activeRow)
-    // console.log('KEY PRESSED', e.key)
-    if(validInput(e.key) && activeTile < 6){
-      // console.log('VALID KEY', e.key)
-      setWord(word + e.key.toUpperCase())
-      updateTile()
-    } else if (e.key === 'Enter'){
-      console.log('word is valid', validWord(word))
+    if(e.key === 'Backspace'){
+      setWord(word.slice(0, -1))
+    }
+
+
+    if (e.key === 'Enter'){
+      if(turn > 5){
+        console.log('you lost')
+        return
+      }
+
+      if(pastGuesses.includes(word)){
+        console.log('No repeated words')
+        return
+      }
+
+      if(word.length !== 5){
+        console.log('Words must be 5 characters')
+        return
+      }
+
       if(validWord(word)){
-        console.log(checkWord(word, targetWord))
-        setActiveRow(activeRow + 1)
-        // checkWord(word)
-      } else console.log('NOT A VALID WORD')
+        console.log(word)
+        const newGuess = [checkWord(word, targetWord)]
+        setTurn(turn + 1)
+        setPastGuesses(...pastGuesses, newGuess)
+        } else console.log('NOT A VALID WORD')
+    }
+
+    if(validInput(e.key)){
+      setWord(word + e.key.toUpperCase())
     }
   }
 
+  const setTileColor = (row, idx) => {
+    console.log(row, idx, pastGuesses)
+    if(pastGuesses.length !== 0){
+      if(pastGuesses[row][idx] === 2){
+        return 'right'
+      } else if(pastGuesses[row][idx] === 1){
+      return 'exists'
+      } else if(pastGuesses[row][idx] === 0){
+        return 'wrong'
+      }
+    }
+  }
+
+
   const resetGame = () => {
-    setActiveRow(1)
-    setActiveTile(1)
+    // setActiveRow(1)
+    // setActiveTile(1)
   }
 
   const updateTile = () => {
-      setActiveTile(activeTile + 1)
-      console.log('tile updated to', activeTile + 1)
+      // setActiveTile(activeTile + 1)
+      // setActiveRef(parseInt(activeRow.toString().concat(activeTile.toString())))
     }
 
   const value = {
     word,
-    activeRow,
-    activeTile,
     resetGame,
     setWord,
     updateTile,
-    handleKeyDown
+    handleKeyDown,
+    setTileColor
   }
 
   useEffect(() => {

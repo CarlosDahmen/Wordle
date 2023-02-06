@@ -1,22 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useGameDetails } from '../context/GameDetails'
+var cx = require('classnames');
+
 
 const Tile = ({row, idx}) => {
-  const {activeTile, activeRow, word, setWord, updateTile} = useGameDetails()
+  console.log('ROW IN COMPONENT TILE', row)
 
-  const submitHandler = (e) => {
-    e.preventDefault()
-    //set letter in word in game state
-  }
-
-  console.log(row)
+  const {word, setTileColor, pastGuesses} = useGameDetails()
 
   return (
-  <div className='tile' id={`${row}${idx}`}>
+  <div className={cx('tile', setTileColor(pastGuesses, row, idx))}>
     {word[idx - 1]}
-    {/* <form  onSubmit={submitHandler}>
-      <input disabled={!(idx === activeTile && row.row === activeRow)} onChange={changeHandler} pattern="[A-Za-z]{1}" maxLength={1} type="text" value={word[idx]}></input>
-    </form> */}
   </div>
   )
 }
