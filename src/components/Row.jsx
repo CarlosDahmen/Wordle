@@ -1,14 +1,40 @@
 import React from 'react'
-import Tile from './Tile'
 
-const Row = ({word, guess, row}) => {
+const Row = ({guess, currentGuess}) => {
+
+  console.log('INSIDE ROW', 'guess', guess, 'currentGuess', currentGuess)
+
+  if (guess){
+    return (
+      <div className="row past">
+        {guess.map((letter, i) => (
+          <div key={i} className={letter.color}>{letter.key}</div>
+          ))}
+      </div>
+    )
+  }
+
+  if (currentGuess){
+    let letters = currentGuess.split('')
+
+    return (
+      <div className='row current'>
+        {letters.map((letter, i) => (
+          <div key={i} className="filled">{letter}</div>
+        ))}
+        {[...Array(5 - letters.length)].map((_,i) => <div key={i}></div>
+        )}
+      </div>
+    )
+  }
+
   return (
     <div className="row">
-      <Tile row={row} idx={0}/>
-      <Tile row={row} idx={1}/>
-      <Tile row={row} idx={2}/>
-      <Tile row={row} idx={3}/>
-      <Tile row={row} idx={4}/>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   )
 }
