@@ -1,126 +1,285 @@
-.App {
+// .App {
+//   text-align: center;
+//   height: 100vh;
+// }
+
+// .App-logo {
+//   height: 40vmin;
+//   pointer-events: none;
+// }
+
+// .game-container {
+//   display: flex;
+//   justify-content: center;
+//   height: inherit;
+//   width: inherit;
+// }
+
+// .board {
+//   height: 100%;
+//   width: 100%;
+//   background-color: white;
+// }
+
+// .App-header {
+//   background-color: #282c34;
+//   min-height: 10px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: flex-start;
+//   font-size: calc(10px + 2vmin);
+//   color: white;
+// }
+
+// .App-link {
+//   color: #61dafb;
+// }
+
+// .row {
+//   text-align: center;
+//   display: flex;
+//   justify-content: center;
+// }
+
+// .row > div {
+//   display: block;
+//   width: 60px;
+//   height: 60px;
+//   border: 1px solid #bbb;
+//   margin: 4px;
+//   text-align: center;
+//   line-height: 60px;
+//   text-transform: uppercase;
+//   font-weight: bold;
+//   font-size: 2.5em;
+// }
+// .row > div.green {
+//   --background: #5ac85a;
+//   --border-color: #5ac85a;
+//   animation: flip 0.5s ease forwards;
+// }
+// .row > div.grey {
+//   --background: #a1a1a1;
+//   --border-color: #a1a1a1;
+//   animation: flip 0.6s ease forwards;
+// }
+// .row > div.yellow {
+//   --background: #e2cc68;
+//   --border-color: #e2cc68;
+//   animation: flip 0.5s ease forwards;
+// }
+
+// .row:nth-child(2) {
+//   animation-delay: 0.2s;
+// }
+
+// .row:nth-child(3) {
+//   animation-delay: 0.4s;
+// }
+
+// .row:nth-child(4) {
+//   animation-delay: 0.6s;
+// }
+
+// .row:nth-child(5) {
+//   animation-delay: 0.8s;
+// }
+
+// //animations
+
+// @keyframes flip {
+//   0% {
+//     transform: rotateX(0);
+//     background: #fff;
+//     border-color: #333;
+//   }
+//   45% {
+//     transform: rotateX(90deg);
+//     background: white;
+//     border-color: #333;
+//   }
+//   55% {
+//     transform: rotateX(90deg);
+//     background: var(--background);
+//     border-color: var(--border-color);
+//   }
+//   100% {
+//     transform: rotateX(0deg);
+//     background: var(--background);
+//     border-color: var(--border-color);
+//     color: #eee;
+//   }
+// }
+
+// // @keyframes flip {
+// //   0% {
+// //     transform: rotateX(0);
+// //     background: white;
+// //   }
+// //   45% {
+// //     transform: rotateX(90deg);
+// //     background: white;
+// //   }
+// //   55% {
+// //     transform: rotateX(90deg);
+// //     background: var(--background);
+// //   }
+// //   100% {
+// //     transform: rotateX(0);
+// //     background: var(--background);
+// //   }
+// // }
+
+
+body {
   text-align: center;
-  height: 100vh;
+  font-size: 1em;
+  font-family: verdana;
+  margin: 0;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  font-size: 1.2em;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+  margin: 0 0 30px 0;
+  color: #333;
 }
-
-.game-container {
-  display: flex;
-  justify-content: center;
-  height: inherit;
-  width: inherit;
-}
-
-.board {
-  height: 100%;
-  width: 100%;
-  background-color: white;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
+/* rows */
 .row {
+  text-align: center;
   display: flex;
   justify-content: center;
 }
-
-.row:focus{
-  border-color: blue;
-  border-style: solid;
-  margin: 5px;
-}
-
-.tile {
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
+.row > div {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #bbb;
+  margin: 4px;
+  text-align: center;
+  line-height: 60px;
+  text-transform: uppercase;
   font-weight: bold;
-  width: 58px;
-  height: 58px;
-  border: 2px;
+  font-size: 2.5em;
 }
-
-.present {
-  background-color: rgba(0,255,0,0.5);
-  background-repeat: no-repeat;
-  background-position: center;
+.row > div.green {
+  --background: #5ac85a;
+  --border-color: #5ac85a;
+  animation: flip 0.5s ease forwards;
 }
-
-.exists  {
-  background-color: rgba(0,0,255,0.5);
-  background-repeat: no-repeat;
-  background-position: center;
+.row > div.grey {
+  --background: #a1a1a1;
+  --border-color: #a1a1a1;
+  animation: flip 0.6s ease forwards;
 }
-
-.miss {
-  background-color: rgba(255,0,0,0.5);
-  background-repeat: no-repeat;
-  background-position: center;
+.row > div.yellow {
+  --background: #e2cc68;
+  --border-color: #e2cc68;
+  animation: flip 0.5s ease forwards;
 }
-
-.tile {
-  border-style: solid;
+.row > div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.row > div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.row > div:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.row > div:nth-child(5) {
+  animation-delay: 0.8s;
+}
+.row.current > div.filled {
+  animation: bounce 0.2s ease-in-out forwards;
+}
+.keypad {
+  max-width: 500px;
+  margin: 20px auto;
+}
+.keypad > div {
   margin: 5px;
-  display: flex;
+  width: 40px;
+  height: 50px;
+  background: #eee;
+  display: inline-block;
+  border-radius: 6px;
+  line-height: 50px;
 }
-
-.tile:focus {
-  border-color: red;
+.keypad > div.green {
+  background: #5ac85a;
+  color: #fff;
+  transition: all 0.3s ease-in;
 }
-
-input {
+.keypad > div.yellow {
+  background: #e2cc68;
+  color: #fff;
+  transition: all 0.3s ease-in;
+}
+.keypad > div.grey {
+  background: #a1a1a1;
+  color: #fff;
+  transition: all 0.3s ease-in;
+}
+.modal {
+  background: rgba(255,255,255,0.7);
+  position: fixed;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
-  background: transparent;
+  top: 0;
+  left: 0;
+}
+.modal div {
+  max-width: 480px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  margin: 10% auto;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+.modal .solution {
+  color: #ff004c;
+  font-weight: bold;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-
-.right {
-  background-color: green;
-  animation: flip 0.5s ease forwards;
-}
-
-.exists {
-  background-color: yellow;
-  animation: flip 0.5s ease forwards;
-}
-
-.wrong {
-  background-color: gray;
-  animation: flip 0.5s ease forwards;
-}
-
-//animations
-
+/* keyframe animations */
 @keyframes flip {
   0% {
-    transform: rotateX(0)
+    transform: rotateX(0);
+    background: #fff;
+    border-color: #333;
   }
   45% {
     transform: rotateX(90deg);
+    background: white;
+    border-color: #333;
   }
   55% {
     transform: rotateX(90deg);
+    background: var(--background);
+    border-color: var(--border-color);
   }
   100% {
-    transform: rotateX(0)
+    transform: rotateX(0deg);
+    background: var(--background);
+    border-color: var(--border-color);
+    color: #eee;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+    border-color: #ddd;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    border-color: #333;
   }
 }
