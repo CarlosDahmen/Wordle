@@ -269,5 +269,5 @@ export const wordlist = [
   "WRITE",
   "WRONG",
   "WRYLY",
-  "YOUNG"
-]
+  "YOUNG",
+];

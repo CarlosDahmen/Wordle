@@ -1,31 +1,33 @@
-import React from 'react'
+import React from "react";
 
-const Row = ({guess, currentGuess}) => {
-
-  console.log('INSIDE ROW', 'guess', guess, 'currentGuess', currentGuess)
-
-  if (guess){
+const Row = ({ guess, currentGuess }) => {
+  if (guess) {
     return (
       <div className="row past">
         {guess.map((letter, i) => (
-          <div key={i} className={letter.color}>{letter.key}</div>
-          ))}
+          <div key={i} className={letter.color}>
+            {letter.key}
+          </div>
+        ))}
       </div>
-    )
+    );
   }
 
-  if (currentGuess){
-    let letters = currentGuess.split('')
+  if (currentGuess) {
+    let letters = currentGuess.split("");
 
     return (
-      <div className='row current'>
+      <div className="row current">
         {letters.map((letter, i) => (
-          <div key={i} className="filled">{letter}</div>
+          <div key={i} className="filled">
+            {letter}
+          </div>
         ))}
-        {[...Array(5 - letters.length)].map((_,i) => <div key={i}></div>
-        )}
+        {[...Array(5 - letters.length)].map((_, i) => (
+          <div key={i}></div>
+        ))}
       </div>
-    )
+    );
   }
 
   return (
@@ -36,7 +38,7 @@ const Row = ({guess, currentGuess}) => {
       <div></div>
       <div></div>
     </div>
-  )
-}
+  );
+};
 
-export default Row
+export default Row;

@@ -1,9 +1,8 @@
-import React from "react"
+import React from "react";
 
-const Modal = ({outcome, turn, solution, reset}) => {
-
-  if(outcome === 'won'){
-    return(
+const Modal = ({ outcome, turn, solution, reset }) => {
+  if (outcome === "won") {
+    return (
       <div className="modal">
         <div>
           <h1>You Won!</h1>
@@ -11,11 +10,11 @@ const Modal = ({outcome, turn, solution, reset}) => {
           <button onClick={reset}>Play Again</button>
         </div>
       </div>
-    )
+    );
   }
 
-  if(outcome === 'lost'){
-    return(
+  if (outcome === "lost") {
+    return (
       <div className="modal">
         <div>
           <h1>You Lost!</h1>
@@ -23,8 +22,8 @@ const Modal = ({outcome, turn, solution, reset}) => {
           <button onClick={reset}>Play Again</button>
         </div>
       </div>
-    )
+    );
   }
-}
+};
 
-export default Modal
+export default Modal;
