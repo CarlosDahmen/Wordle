@@ -200,7 +200,6 @@ export const wordlist = [
   "SLYLY",
   "SMALL",
   "SMART",
-  "SO-SO",
   "SOLID",
   "SOLVE",
   "SORRY",
