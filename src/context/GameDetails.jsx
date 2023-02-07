@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { validInput, checkWord, validWord, newWord } from "../utilities";
+import { validInput, validWord, newWord } from "../utilities";
 const GameDetails = createContext()
 
 //create custom hook to check if there is a provider
@@ -17,16 +17,42 @@ export const useGameDetails = () => {
 
 export const GameDetailsProvider = (props) => {
   const [turn, setTurn] = useState(0)
-  const [gameState, setGameState] = useState('playing')
   const [word, setWord] = useState('')
-  const [targetWord, setTargetWord] = useState('')
   const [pastGuesses, setPastGuesses] = useState([...Array(6)])
+  const [checkedGuesses, setCheckedGuesses] = useState([...Array(6)])
+  const [gameState, setGameState] = useState('playing')
+  const [targetWord, setTargetWord] = useState('')
+
+  const formatGuess = () => {
+    let targetArray = [...targetWord]
+    let formattedGuess = [...word].map((letter) => {
+      return {key: letter, color:'grey'}
+    })
+
+    //check for existence and correct placement (green)
+    formattedGuess.forEach((letter, i) => {
+      if(targetWord[i] === letter.key){
+        formattedGuess[i].color = 'green'
+       targetArray[i] = null
+      }
+    })
+
+    //check for letters that exist but are in the incorrect position
+    formattedGuess.forEach((letter, i) => {
+      if(targetArray.includes(letter.key) && letter.color !== 'green'){
+        formattedGuess[i].color = 'yellow'
+        targetArray[targetArray.indexOf(letter.key)] = null
+      }
+    })
+
+    return formattedGuess
+  }
 
   const handleKeyDown = e => {
+    console.log(e.key)
     if(e.key === 'Backspace'){
       setWord(word.slice(0, -1))
     }
-
 
     if (e.key === 'Enter'){
       if(turn > 5){
@@ -46,7 +72,8 @@ export const GameDetailsProvider = (props) => {
       }
 
       if(validWord(word)){
-        addNewGuess(word)
+        const formattedWord = formatGuess()
+        addNewGuess(formattedWord)
         } else console.log('NOT A VALID WORD')
     }
 
@@ -57,38 +84,28 @@ export const GameDetailsProvider = (props) => {
     }
   }
 
-  const addNewGuess = (word) => {
+  const addNewGuess = (formattedGuess) => {
+    console.log('here')
     if(word === targetWord){
       setGameState('won')
     }
-    setPastGuesses((pastGuesses) => {
+
+    setPastGuesses(pastGuesses => {
       let updatedGuesses = [...pastGuesses]
-      updatedGuesses[turn] = word
+      updatedGuesses[turn] = formattedGuess
       return updatedGuesses
     })
-    // setPastGuesses(...pastGuesses, word)
+
+    setCheckedGuesses((checkedGuesses) => {
+      return [...checkedGuesses, formattedGuess]
+    })
+
     setTurn(turn => {
       return turn + 1
     })
+
     setWord('')
   }
-
-  const setTileColor = (pastGuess, idx) => {
-    if(pastGuesses !== undefined){
-      if(checkWord(pastGuess, targetWord)[idx] === 2){
-        console.log('right')
-        return 'right'
-      } else if(checkWord(pastGuess, targetWord)[idx] === 1){
-        console.log('exists')
-        return 'exists'
-      } else if(checkWord(pastGuess, targetWord)[idx] === 0){
-        console.log('wrong')
-        return 'wrong'
-      }
-      return true
-    }
-  }
-
 
   const resetGame = () => {
     // setActiveRow(1)
@@ -101,10 +118,10 @@ export const GameDetailsProvider = (props) => {
     targetWord,
     gameState,
     pastGuesses,
+    checkedGuesses,
     resetGame,
     setWord,
-    handleKeyDown,
-    setTileColor,
+    handleKeyDown
   }
 
   useEffect(() => {
