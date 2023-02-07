@@ -1,22 +1,5 @@
 import { wordlist } from "./wordlist"
 
-export const checkWord = (word, targetWord) => {
-  console.log('word', word, 'targetword', targetWord)
-  const checkedWord = []
-
-  for(let i = 0; i < word.length; i++){
-      if(!word.includes(targetWord[i])){
-        checkedWord.push(0)
-      } else if(word.includes(targetWord[i]) && targetWord[i] !== word[i]){
-        checkedWord.push(1)
-      } else if (targetWord[i] === word[i]){
-        checkedWord.push(2)
-      }
-    }
-  return checkedWord
-}
-
-
 export const validInput = (input) => {
   const isLetter = /^[A-Za-z]$/.test(input)
   return isLetter
