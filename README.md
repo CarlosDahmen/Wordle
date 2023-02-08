@@ -16,5 +16,5 @@ The project was built using create-react-app
 
     On the main project folder
 
-    -Run npm install
-    - run npm start
+    - Run npm install
+    - Run npm start
