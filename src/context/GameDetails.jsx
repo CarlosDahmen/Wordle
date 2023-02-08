@@ -21,6 +21,7 @@ export const GameDetailsProvider = (props) => {
   const [gameState, setGameState] = useState("playing");
   const [targetWord, setTargetWord] = useState("");
   const [usedKeys, setUsedKeys] = useState({}); // {a:'yellow', b:'green', c:'gray', etc...}
+  const [message, setMessage] = useState("");
 
   const formatGuess = () => {
     let targetArray = [...targetWord];
@@ -50,23 +51,24 @@ export const GameDetailsProvider = (props) => {
   const handleKeyDown = (e) => {
     if (e.key === "Backspace") {
       setWord(word.slice(0, -1));
+      setMessage("");
     }
 
     if (e.key === "Enter") {
       if (pastGuesses.includes(word)) {
-        console.log("No repeated words");
+        setMessage("No repeated words");
         return;
       }
 
       if (word.length !== 5) {
-        console.log("Words must be 5 characters");
+        setMessage("Words must be 5 characters");
         return;
       }
 
       if (validWord(word)) {
         const formattedWord = formatGuess();
         addNewGuess(formattedWord);
-      } else console.log("NOT A VALID WORD");
+      } else setMessage("Not a valid Word");
     }
 
     if (validInput(e.key)) {
@@ -142,6 +144,7 @@ export const GameDetailsProvider = (props) => {
   };
 
   const value = {
+    message,
     turn,
     word,
     targetWord,

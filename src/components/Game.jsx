@@ -14,6 +14,7 @@ const Game = () => {
     gameState,
     targetWord,
     resetGame,
+    message,
   } = useGameDetails();
 
   useEffect(() => {
@@ -34,6 +35,8 @@ const Game = () => {
 
   return (
     <div>
+      <h1>WORDLE</h1>
+      {message}
       <Grid guesses={pastGuesses} currentGuess={word} turn={turn} />
       <Keypad usedKeys={usedKeys} />
       {gameState !== "playing" && (
