@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Grid from "./Grid";
-import { useGameDetails } from "../context/GameDetails";
+import { useGameDetails } from "../context/GameDetails.jsx";
 import Keypad from "./Keypad";
 import Modal from "./Modal";
 

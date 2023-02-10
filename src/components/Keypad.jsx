@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { keyboardLetters } from "../utilities/letters";
-import { useGameDetails } from "../context/GameDetails";
+import { useGameDetails } from "../context/GameDetails.jsx";
 
 const Keypad = ({ usedKeys }) => {
   const { handleKeyDown } = useGameDetails();
