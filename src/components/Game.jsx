@@ -36,7 +36,7 @@ const Game = () => {
   return (
     <div>
       <h1>WORDLE</h1>
-      {message}
+      <h2>{message}</h2>
       <Grid guesses={pastGuesses} currentGuess={word} turn={turn} />
       <Keypad usedKeys={usedKeys} />
       {gameState !== "playing" && (

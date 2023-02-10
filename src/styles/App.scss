@@ -8,9 +8,19 @@ h1 {
   font-size: 1.2em;
   padding: 20px 0;
   border-bottom: 1px solid #eee;
-  margin: 0 0 30px 0;
+  margin: 0;
   color: #333;
 }
+
+h2 {
+  font-size: 1.2em;
+  -webkit-animation: bounce 0.5s ease-in-out forwards;
+  animation: bounce 0.5s ease-in-out forwards;
+  height: 30px;
+  margin: 0;
+  line-height: 1.7;
+}
+
 /* rows */
 .row {
   text-align: center;
