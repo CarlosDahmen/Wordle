@@ -22,6 +22,7 @@ export const GameDetailsProvider = (props) => {
   const [targetWord, setTargetWord] = useState("");
   const [usedKeys, setUsedKeys] = useState({}); // {a:'yellow', b:'green', c:'gray', etc...}
   const [message, setMessage] = useState("");
+  const [history, setHistory] = useState([]);
 
   const formatGuess = () => {
     let targetArray = [...targetWord];
@@ -55,7 +56,7 @@ export const GameDetailsProvider = (props) => {
     }
 
     if (e.key === "Enter") {
-      if (pastGuesses.includes(word)) {
+      if (history.includes(word)) {
         setMessage("No repeated words");
         return;
       }
@@ -80,8 +81,14 @@ export const GameDetailsProvider = (props) => {
 
   const addNewGuess = (formattedGuess) => {
     if (word === targetWord) {
-      setGameState("won");
+      setTimeout(() => {
+        setGameState("won");
+      }, 2000);
     }
+
+    setHistory((prevHistory) => {
+      setHistory([...prevHistory, word]);
+    });
 
     setPastGuesses((pastGuesses) => {
       let updatedGuesses = [...pastGuesses];
@@ -128,7 +135,9 @@ export const GameDetailsProvider = (props) => {
 
     if (turn >= 5) {
       console.log("you lost");
-      setGameState("lost");
+      setTimeout(() => {
+        setGameState("lost");
+      }, 2000);
       return;
     }
   };
