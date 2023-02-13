@@ -16,12 +16,17 @@ const Keypad = ({ usedKeys }) => {
   };
 
   return (
-    <div className="keypad">
+    <div className="keypad" title="keypad">
       {letters &&
         letters.map((letter) => {
           const color = usedKeys[letter.key.toUpperCase()];
           return (
-            <div onClick={clickHandler} key={letter.key} className={color}>
+            <div
+              onClick={clickHandler}
+              key={letter.key}
+              className={color}
+              label={letter.key}
+            >
               {letter.key}
             </div>
           );
