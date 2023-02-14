@@ -1,7 +1,7 @@
-import { render, screen } from "../../test-utils/testing-library-utils";
-import Game from "../Game";
+import { render, screen } from "../test-utils/testing-library-utils";
+import Game from "./Game";
 
-describe("App loads correctly", () => {
+describe("<Game />", () => {
   test("Header loads correctly", () => {
     render(<Game />);
     const header = screen.getByRole("heading", { name: "WORDLE" });

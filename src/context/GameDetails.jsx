@@ -18,7 +18,7 @@ export const GameDetailsProvider = (props) => {
   const [word, setWord] = useState("");
   const [pastGuesses, setPastGuesses] = useState([...Array(6)]);
   const [checkedGuesses, setCheckedGuesses] = useState([...Array(6)]);
-  const [gameState, setGameState] = useState("playing");
+  const [gameState, setGameState] = useState("playing"); // playing, won, lost
   const [targetWord, setTargetWord] = useState("");
   const [usedKeys, setUsedKeys] = useState({}); // {a:'yellow', b:'green', c:'gray', etc...}
   const [message, setMessage] = useState("");

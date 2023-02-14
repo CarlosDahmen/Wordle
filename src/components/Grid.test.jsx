@@ -1,5 +1,5 @@
 import { screen, render } from "@testing-library/react";
-import Grid from "../Grid";
+import Grid from "./Grid";
 
 test("grid loads correctly", () => {
   render(<Grid guesses={[]} />);
