@@ -22,12 +22,10 @@ const Game = () => {
 
     if (gameState === "won") {
       window.removeEventListener("keydown", handleKeyDown);
-      console.log("YOU WON!");
     }
 
     if (gameState === "lost") {
       window.removeEventListener("keydown", handleKeyDown);
-      console.log("YOU LOST :(");
     }
 
     return () => window.removeEventListener("keydown", handleKeyDown);
