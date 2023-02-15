@@ -76,6 +76,37 @@ describe("Gameplay", () => {
     expect(message).toBeInTheDocument();
   });
 
+  test("if game is lost, clicking play again button restarts the game", async () => {
+    render(<App />);
+
+    await keyboard("ACORN");
+    await keyboard("{Enter}");
+    await keyboard("ACTOR");
+    await keyboard("{Enter}");
+    await keyboard("ACUTE");
+    await keyboard("{Enter}");
+    await keyboard("ADAPT");
+    await keyboard("{Enter}");
+    await keyboard("ADMIT");
+    await keyboard("{Enter}");
+    await keyboard("ADOBE");
+    await keyboard("{Enter}");
+
+    const message = await screen.findByText("You Lost!", {}, { timeout: 2000 });
+    expect(message).toBeInTheDocument();
+
+    const button = await screen.findByText(
+      /play again/i,
+      {},
+      { timeout: 2000 }
+    );
+    await user.click(button);
+
+    await waitFor(() => {
+      expect(screen.queryByText("You Lost!")).not.toBeInTheDocument();
+    });
+  });
+
   test("if game is won, clicking play again button restarts the game", async () => {
     render(<App />);
     await keyboard("arise");
