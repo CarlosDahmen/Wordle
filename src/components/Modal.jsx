@@ -19,7 +19,9 @@ const Modal = ({ outcome, turn, solution, reset }) => {
         <div>
           <h1>You Lost!</h1>
           <p className="solution">The solution was {solution}</p>
-          <button onClick={reset}>Play Again</button>
+          <button onClick={reset} label="play-again">
+            Play Again
+          </button>
         </div>
       </div>
     );

@@ -134,7 +134,6 @@ export const GameDetailsProvider = (props) => {
     setWord("");
 
     if (turn >= 5) {
-      console.log("you lost");
       setTimeout(() => {
         setGameState("lost");
       }, 2000);
