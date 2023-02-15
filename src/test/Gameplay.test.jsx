@@ -1,21 +1,37 @@
 import { render, screen } from "../test-utils/testing-library-utils";
 // import userEvent from "@testing-library/user-event";
 import App from "../App";
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
 
-test("Gameplay golden path", () => {
+/**
+ *
+ */
+describe("Gameplay", () => {
   // const user = userEvent.setup();
 
-  render(<App />);
+  test("The board reflects if a letter is typed", () => {
+    render(<App />);
+    keyboard("c");
+    keyboard("{Enter}");
 
-  const header = screen.getByRole("heading", { name: "WORDLE" });
-  console.log(header);
+    const tile = screen.getByText("C");
+    expect(tile).toBeInTheDocument();
+  });
 
-  //app loads correctly
-  expect(header).toBeInTheDocument();
+  test.each(["C", "R", "A", "T", "E"])(
+    "The board reflects if multiple letter are typed %p",
+    (letter) => {
+      render(<App />);
+      keyboard(letter);
+      expect(screen.getByText(letter)).toBeInTheDocument();
+    }
+  );
 
-  //grid loads correctly
-
-  //keypad loads correctly
-
-  //
+  test("You Won! message displays if the target word is entered", async () => {
+    render(<App />);
+    keyboard("arise");
+    keyboard("{Enter}");
+    const message = await screen.findByText("You Won!", {}, { timeout: 2000 });
+    expect(message).toBeInTheDocument();
+  });
 });

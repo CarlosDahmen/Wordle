@@ -9,6 +9,7 @@ The game logic is implemented in a custom react hook, and the app is wrapped in 
 - React
 - Context/Context provider
 - React Hooks
+- React Testing Library
 
 The project was built using create-react-app
 
