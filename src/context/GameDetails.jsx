@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { validInput, validWord, newWord } from "../utilities";
+import { validInput, validWord, newWord } from "../utilities/utils";
 const GameDetails = createContext();
 
 //create custom hook to check if there is a provider
